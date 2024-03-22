@@ -12,12 +12,14 @@
   "author": "Camilo Saa",
   "license": "ISC",
   "dependencies": {
+    "@langchain/openai": "^0.0.23",
     "@types/node": "^16.11.36",
     "@types/node-fetch": "^2.6.2",
     "dotenv": "^16.4.5",
     "ignore": "^5.3.1",
     "langchain": "^0.1.28",
-    "openai": "^4.29.2"
+    "openai": "^4.29.2",
+    "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",

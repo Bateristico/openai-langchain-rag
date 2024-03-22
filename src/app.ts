@@ -1,23 +1,26 @@
-// import dotenv from "dotenv";
-// // Peer dependency, used to support .gitignore syntax
-// import ignore from "ignore";
-// import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { GithubRepoLoader } from "langchain/document_loaders/web/github";
-// import OpenAI from "openai";
-// import * as parse from "pdf-parse";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { similarity } from "ml-distance";
 
-// create main arrow function
+// import * as parce from "pdf-parse";
+
 const main = async () => {
-  // Will not include anything under "ignorePaths"
-  const loader = new GithubRepoLoader("https://github.com/langchain-ai/langchainjs", {
-    recursive: false,
-    ignorePaths: ["*.md", "yarn.lock"],
+  const embeddings = new OpenAIEmbeddings();
+
+  const loader = new PDFLoader("./src/static/docs/Runbook.pdf");
+  const rawText = await loader.load();
+
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 128,
+    chunkOverlap: 0,
   });
 
-  const docs = await loader.load();
-  console.log(docs.slice(0, 3));
+  const spritDocs = await splitter.splitDocuments(rawText);
+  const vectorStore = new MemoryVectorStore(embeddings);
+
+  console.log(spritDocs);
 };
 
 main();
-
-console.log("hello");

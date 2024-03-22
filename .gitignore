@@ -118,3 +118,5 @@ sam.template.yaml
 # AWS CDK
 cdk.out/
 asset.*/
+# PDF support instructions
+Runbook.pdf
