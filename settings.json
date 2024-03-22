@@ -1,8 +1,1 @@
-{
-  "eslint.run": "onSave",
-  "eslint.codeActionsOnSave.mode": "all",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  }
-}
+{ "eslint.run": "onSave", "eslint.codeActionsOnSave.mode": "all" }
